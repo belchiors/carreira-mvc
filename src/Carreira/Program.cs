@@ -1,5 +1,10 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+
 using Carreira.Database;
+using Carreira.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +17,29 @@ builder.Services.AddDbContext<DatabaseContext>((options) => {
     var connectionString = Environment.GetEnvironmentVariable("DATABASE_URL");
     options.UseSqlServer(connectionString);
 });
+
+// Configure JWT Bearer authentication service
+var securityKey = Environment.GetEnvironmentVariable("SECURITY_KEY");
+builder.Services.AddSingleton<TokenService>(tokenService => new TokenService(securityKey));
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = false,
+            ValidateAudience = false,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+
+            IssuerSigningKey = new SymmetricSecurityKey(
+                Encoding.ASCII.GetBytes(securityKey))
+        };
+    });
+
 
 var app = builder.Build();
 
