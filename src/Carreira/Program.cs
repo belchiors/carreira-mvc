@@ -1,8 +1,17 @@
+using Microsoft.EntityFrameworkCore;
+using Carreira.Database;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
+
+// Register SQL Server database service
+builder.Services.AddDbContext<DatabaseContext>((options) => {
+    var connectionString = Environment.GetEnvironmentVariable("DATABASE_URL");
+    options.UseSqlServer(connectionString);
+});
 
 var app = builder.Build();
 
