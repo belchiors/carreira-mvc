@@ -19,7 +19,7 @@ function JobForm() {
     }
 
     return (
-        <div className="form-container">
+        <div className="content">
             <form onSutmit={onSubmit}>
                 <div className="form-field">
                     <label id="company-name">Nome da empresa</label>
