@@ -5,9 +5,9 @@ namespace Carreira.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class HomeController : ControllerBase
+public class JobsController : ControllerBase
 {
-    public HomeController()
+    public JobsController()
     {
 
     }
