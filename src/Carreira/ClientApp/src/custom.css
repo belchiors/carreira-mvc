@@ -57,6 +57,7 @@ ul.nav-menu {
     margin-top: 1rem;
     border: 1px solid #d3d3d3;
     border-radius: 4px;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.16);
 }
 
 ul.list-view {
@@ -70,6 +71,12 @@ ul.list-view {
 .wrapper {
     padding-left: 1rem;
     padding-right: 1rem;
+    margin: 0 auto;
+}
+
+.content {
+    margin: 3rem auto 0;
+    max-width: 56rem;
 }
 
 .page-footer {
@@ -107,6 +114,20 @@ label {
     margin-bottom: 0.35rem;
 }
 
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin: 15% auto 0;
+}
+
+.form-container form {
+    width: 100%;
+}
+
 .form-field {
     padding-bottom: 1rem;
 }
@@ -124,6 +145,17 @@ label {
 
 .button:hover {
     opacity: 0.8;
+}
+
+.card {
+    border: 1px solid #d3d3d3;
+    border-radius: 2px;
+    padding: 1rem;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.16);
+}
+
+.max-w-sm {
+    width: 24rem;
 }
 
 @media only screen and (max-width: 768px) {
