@@ -8,7 +8,7 @@ function NavMenu() {
                     <a href="/publish">Anunciar Vaga</a>
                 </li>
                 <li className="menu-item">
-                    <a href="/login">Login</a>
+                    <a href="/account/sign_in">Login</a>
                 </li>
             </ul>
         </nav>
