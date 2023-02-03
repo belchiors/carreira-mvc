@@ -81,6 +81,51 @@ ul.list-view {
     margin-top: 5rem;
 }
 
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 0.25rem;
+    border: 1px solid #bdbdbd;
+    border-radius: 2px;
+    font-size: 1rem;
+}
+
+input {
+    height: 2.2rem;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #1985d8;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.35rem;
+}
+
+.form-field {
+    padding-bottom: 1rem;
+}
+
+.button {
+    padding: 0.5rem 1rem;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #ffffff;
+    background-color: #0078d4;
+}
+
+.button:hover {
+    opacity: 0.8;
+}
+
 @media only screen and (max-width: 768px) {
     ul.list-view {
         display: block;
