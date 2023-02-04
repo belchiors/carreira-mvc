@@ -40,6 +40,8 @@ builder.Services.AddAuthentication(options =>
         };
     });
 
+builder.Services.AddScoped<AccountService>();
+
 
 var app = builder.Build();
 
