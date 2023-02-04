@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function JobForm() {
     const [ formData, setFormData ] = useState({
@@ -9,8 +10,21 @@ function JobForm() {
         companyLocation: ""
     });
 
+    const navigate = useNavigate();
+
     const onSubmit = (event) => {
-        event.PreventDefault();
+        event.preventDefault();
+        fetch("api/jobs", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(formData)
+        })
+            .then((response) => response.json())
+            .then(console.log);
+
+        navigate("/");
     }
 
     const onChange = (event) => {
@@ -20,7 +34,7 @@ function JobForm() {
 
     return (
         <div className="content">
-            <form onSutmit={onSubmit}>
+            <form onSubmit={onSubmit} method="POST">
                 <div className="form-field">
                     <label id="company-name">Nome da empresa</label>
                     <input id="company-name" type="text" name="companyName" value={formData.companyName} onChange={onChange} required/>
