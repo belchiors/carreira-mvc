@@ -10,19 +10,27 @@ function SignUp() {
     });
 
     const onChange = (event) => {
-        event.preventDefault();
         const { name, value } = event.target;
         setFormData((values) => ({ ...values, [name]: value }));
     };
 
-    const onSubmit = async (event) => {
+    const onSubmit = (event) => {
         event.preventDefault();
+        fetch("api/account/signup", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(formData)
+        })
+            .then((response) => response.json())
+            .then(console.log);
     };
 
     return (
         <div className="wrapper">
             <div className="form-container max-w-sm card">
-                <form onSubmit={onSubmit}>
+                <form onSubmit={onSubmit} method="POST">
                     <div className="form-field">
                         <label id="name">Nome completo</label>
                         <input id="name" type="text" name="name" value={formData.name} onChange={onChange} required />
@@ -45,7 +53,7 @@ function SignUp() {
                 </form>
                 <div className="">
                     Já possui uma conta?&nbsp;
-                    <a href="/account/sign_in">Entre</a>
+                    <a href="/account/signin">Entre</a>
                 </div>
             </div>
         </div>
