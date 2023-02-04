@@ -1,1 +1,165 @@
 
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family:'Segoe UI', sans-serif;
+    font-size: 16px;
+    color: #212121;
+}
+
+a {
+    color: #0078d4;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 56px;
+    color: #ffffff;
+    background-color: #0078d4;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.navbar .brand {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.navbar a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+ul.nav-menu {
+    list-style: none;
+}
+
+.menu-item {
+    display: inline;
+    padding: 1rem;
+    cursor: pointer;
+}
+
+.menu-item:hover {
+    background-color: #1985d8;
+    text-decoration: underline;
+}
+
+.list-item {
+    display: block;
+    padding: 1rem 0.85rem;
+    margin-top: 1rem;
+    border: 1px solid #d3d3d3;
+    border-radius: 4px;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.16);
+}
+
+ul.list-view {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(100px, auto);
+    list-style: none;
+}
+
+.wrapper {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin: 0 auto;
+}
+
+.content {
+    margin: 3rem auto 0;
+    max-width: 56rem;
+}
+
+.page-footer {
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+    background: #0078d4;
+    height: 128px;
+    margin-top: 5rem;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 0.25rem;
+    border: 1px solid #bdbdbd;
+    border-radius: 2px;
+    font-size: 1rem;
+}
+
+input {
+    height: 2.2rem;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #1985d8;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.35rem;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin: 15% auto 0;
+}
+
+.form-container form {
+    width: 100%;
+}
+
+.form-field {
+    padding-bottom: 1rem;
+}
+
+.button {
+    padding: 0.5rem 1rem;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #ffffff;
+    background-color: #0078d4;
+}
+
+.button:hover {
+    opacity: 0.8;
+}
+
+.card {
+    border: 1px solid #d3d3d3;
+    border-radius: 2px;
+    padding: 1rem;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.16);
+}
+
+.max-w-sm {
+    width: 24rem;
+}
+
+@media only screen and (max-width: 768px) {
+    ul.list-view {
+        display: block;
+    }
+}
