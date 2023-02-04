@@ -17,8 +17,8 @@ function App() {
         <Route path="publish" element={<JobForm />} />
       </Route>
       <Route path="/account">
-        <Route path="sign_in" element={<SignIn />} />
-        <Route path="sign_up" element={<SignUp />} />
+        <Route path="signin" element={<SignIn />} />
+        <Route path="signup" element={<SignUp />} />
       </Route>
     </Routes>
   );
