@@ -1,6 +1,7 @@
 using System;
 using Carreira.Database;
 using Carreira.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,6 +19,7 @@ public class JobsController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize(Roles = "Employer")]
     public async Task<IActionResult> Create(Job job)
     {
         await _databaseContext.Jobs.AddAsync(job);
@@ -26,6 +28,7 @@ public class JobsController : ControllerBase
     }
 
     [HttpPut]
+    [Authorize(Roles = "Employer")]
     public async Task<IActionResult> Update(Job job)
     {
         try
@@ -42,6 +45,7 @@ public class JobsController : ControllerBase
     }
 
     [HttpDelete]
+    [Authorize(Roles = "Employer")]
     public async Task<IActionResult> Delete(int jobId)
     {
         var job = await _databaseContext.Jobs.FindAsync(jobId);
