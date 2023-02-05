@@ -14,17 +14,24 @@ function SignUp() {
         setFormData((values) => ({ ...values, [name]: value }));
     };
 
-    const onSubmit = (event) => {
+    const onSubmit = async (event) => {
         event.preventDefault();
-        fetch("api/account/signup", {
+
+        const response = await fetch("api/account/signup", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(formData)
-        })
-            .then((response) => response.json())
-            .then(console.log);
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            alert(data);
+        } else if (response.status === 409) {
+            const data = await response.json();
+            alert(data.error);
+        }
     };
 
     return (

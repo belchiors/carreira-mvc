@@ -1,7 +1,11 @@
-
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { login } from "../services/auth";
 
 function SignIn() {
+    const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
         email: "",
         password: "",
@@ -12,17 +16,25 @@ function SignIn() {
         setFormData((values) => ({ ...values, [name]: value }));
     };
 
-    const onSubmit = (event) => {
+    const onSubmit = async (event) => {
         event.preventDefault();
-        fetch("api/account/signin", {
+
+        const response = await fetch("api/account/signin", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(formData)
-        })
-            .then((response) => response.json())
-            .then(console.log);
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            login(data)
+            navigate("/");
+        } else if (response.status === 404) {
+            const data = await response.json();
+            alert(data.error);
+        }
     };
 
     return (
