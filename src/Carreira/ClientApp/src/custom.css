@@ -88,9 +88,9 @@ ul.list-view {
     margin-top: 5rem;
 }
 
-input,
 select,
-textarea {
+textarea,
+input:not([type="checkbox"]) {
     width: 100%;
     padding: 0.25rem;
     border: 1px solid #bdbdbd;
@@ -112,6 +112,7 @@ textarea:focus {
 label {
     display: block;
     margin-bottom: 0.35rem;
+    padding-right: 1rem;
 }
 
 .form-container {
@@ -129,6 +130,7 @@ label {
 }
 
 .form-field {
+    display: block;
     padding-bottom: 1rem;
 }
 
@@ -156,6 +158,20 @@ label {
 
 .max-w-sm {
     width: 24rem;
+}
+
+.use-flex {
+    display: flex;
+}
+
+.align-middle {
+    display: flex;
+    align-items: center;
+}
+
+.align-center {
+    display: flex;
+    justify-content: center;
 }
 
 @media only screen and (max-width: 768px) {
