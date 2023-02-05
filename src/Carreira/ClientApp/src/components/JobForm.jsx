@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { getToken } from "../services/auth";
+
 function JobForm() {
+    const [ token, setToken ] = useState("");
     const [ formData, setFormData ] = useState({
         title: "",
         description: "",
@@ -12,25 +15,33 @@ function JobForm() {
 
     const navigate = useNavigate();
 
-    const onSubmit = (event) => {
+    const onSubmit = async (event) => {
         event.preventDefault();
-        fetch("api/jobs", {
+
+        const response = await fetch("api/jobs", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authentication": `Bearer ${token}`
             },
             body: JSON.stringify(formData)
-        })
-            .then((response) => response.json())
-            .then(console.log);
+        });
 
-        navigate("/");
+        if (response.ok) {
+            alert("Vaga anunciada com sucesso")
+            navigate("/");
+        }
     }
 
     const onChange = (event) => {
         const { name, value } = event.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
     }
+
+    useEffect(() => {
+        const token = getToken();
+        setToken(token);
+    }, []);
 
     return (
         <div className="content">
