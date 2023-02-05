@@ -37,7 +37,8 @@ public class AccountController : ControllerBase
             return NotFound(new { error = "Credenciais inválidas" });
         }
         var token = _tokenService.GenerateToken(user);
-        return Ok(new { token = token });
+        var userResponse = new { name = user.Name, email = user.Email, role = user.Role };
+        return Ok(new { token = token, user = userResponse });
     }
 
     [HttpPost("signup")]
