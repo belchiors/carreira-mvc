@@ -37,7 +37,12 @@ public class AccountController : ControllerBase
             return NotFound(new { error = "Credenciais inválidas" });
         }
         var token = _tokenService.GenerateToken(user);
-        var userResponse = new { name = user.Name, email = user.Email, role = user.Role };
+        var userResponse = new
+        {
+            name = user.Name,
+            email = user.Email,
+            role = Enum.GetName(typeof(UserRole), user.Role)
+        };
         return Ok(new { token = token, user = userResponse });
     }
 
