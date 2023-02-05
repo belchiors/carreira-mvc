@@ -21,25 +21,47 @@ public class JobsController : ControllerBase
 
     [HttpPost]
     [Authorize(Roles = "Employer")]
-    public async Task<IActionResult> Create(Job job)
+    public async Task<IActionResult> Create(RequestJob model)
     {
-        var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        job.UserId = Convert.ToInt32(userId);
+        var newJob = new Job
+        {
+            Title = model.Title,
+            Description = model.Description,
+            CompanyName = model.CompanyName,
+            CompanyEmail = model.CompanyEmail,
+            CompanyLocation = model.CompanyLocation
+        };
 
-        await _databaseContext.Jobs.AddAsync(job);
+        var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        newJob.UserId = Convert.ToInt32(userId);
+
+        await _databaseContext.Jobs.AddAsync(newJob);
         await _databaseContext.SaveChangesAsync();
-        return Ok(job);
+        return Ok(newJob);
     }
 
     [HttpPut]
     [Authorize(Roles = "Employer")]
-    public async Task<IActionResult> Update(Job job)
+    public async Task<IActionResult> Update(RequestJob model)
     {
         try
         {
-            _databaseContext.Jobs.Update(job);
+            var newJob = new Job
+            {
+                Id = Convert.ToInt32(model.Id),
+                Title = model.Title,
+                Description = model.Description,
+                CompanyName = model.CompanyName,
+                CompanyEmail = model.CompanyEmail,
+                CompanyLocation = model.CompanyLocation
+            };
+
+            var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            newJob.UserId = Convert.ToInt32(userId);
+
+            _databaseContext.Jobs.Update(newJob);
             await _databaseContext.SaveChangesAsync();
-            return Ok(job);
+            return Ok(newJob);
         }
         catch(Exception e)
         {
