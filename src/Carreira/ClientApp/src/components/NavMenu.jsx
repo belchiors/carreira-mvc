@@ -21,7 +21,7 @@ function NavMenu() {
             <ul className="nav-menu">
                 {isAuthenticated() ? (
                     <>
-                        <Restricted to={"0"}>
+                        <Restricted to={0}>
                             <li className="menu-item">
                                 <a href="/publish">Anunciar Vaga</a>
                             </li>
