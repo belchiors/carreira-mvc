@@ -1,4 +1,5 @@
 using System;
+using System.Security.Claims;
 using Carreira.Database;
 using Carreira.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -22,6 +23,9 @@ public class JobsController : ControllerBase
     [Authorize(Roles = "Employer")]
     public async Task<IActionResult> Create(Job job)
     {
+        var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        job.UserId = Convert.ToInt32(userId);
+
         await _databaseContext.Jobs.AddAsync(job);
         await _databaseContext.SaveChangesAsync();
         return Ok(job);
