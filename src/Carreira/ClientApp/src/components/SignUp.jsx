@@ -1,13 +1,16 @@
-
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function SignUp() {
     const [formData, setFormData] = useState({
         name: "",
         email: "",
         password: "",
-        confirmPassword: ""
+        confirmPassword: "",
+        isEmployer: false
     });
+
+    const navigate = useNavigate();
 
     const onChange = (event) => {
         const { name, value } = event.target;
@@ -27,7 +30,8 @@ function SignUp() {
 
         if (response.ok) {
             const data = await response.json();
-            alert(data);
+            alert(data.message);
+            navigate("/account/signin")
         } else if (response.status === 409) {
             const data = await response.json();
             alert(data.error);
@@ -53,6 +57,15 @@ function SignUp() {
                     <div className="form-field">
                         <label id="confirm-password">Confirmar senha</label>
                         <input id="confirm-password" type="password" name="confirmPassword" value={formData.confirmPassword} onChange={onChange} required />
+                    </div>
+                    <div className="form-field use-flex align-middle">
+                        <label htmlFor="role" className="inline">Sou empregador</label>
+                        <input id="role" type="checkbox" name="isEmployer" checked={formData.isEmployer} onChange={(event) => onChange({
+                            target: {
+                                name: event.target.name,
+                                value: event.target.checked,
+                            }
+                        })} />
                     </div>
                     <div className="form-field">
                         <button className="button" type="submit">Cadastrar</button>

@@ -59,6 +59,11 @@ public class AccountController : ControllerBase
             PasswordHash = _accountService.HashPassword(model.Password)
         };
 
+        if (model.IsEmployer)
+        {
+            newUser.Role = UserRole.Employer;
+        }
+
         await _databaseContext.Users.AddAsync(newUser);
         await _databaseContext.SaveChangesAsync();
 
