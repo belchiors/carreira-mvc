@@ -20,5 +20,11 @@ public class DatabaseContext : DbContext
         modelBuilder.Entity<User>()
             .HasIndex(user => user.Email)
             .IsUnique();
+
+        // Define a one-to-many relationship between User and Job
+        modelBuilder.Entity<Job>()
+            .HasOne(job => job.User)
+            .WithMany()
+            .IsRequired();
     }
 }
