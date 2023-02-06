@@ -90,4 +90,18 @@ public class JobsController : ControllerBase
         var jobs = _databaseContext.Jobs.AsAsyncEnumerable();
         return Ok(jobs);
     }
+
+    [HttpGet("{jobId}")]
+    public async Task<IActionResult> GetById([FromQuery] int jobId)
+    {
+        var job = await _databaseContext.Jobs.Where((job) => job.Id.Equals(jobId)).FirstOrDefaultAsync();
+        return Ok(job);
+    }
+
+    [HttpGet("user/{userId}")]
+    public IActionResult GetByUser(int userId)
+    {
+        var jobs = _databaseContext.Jobs.Where((job) => job.UserId.Equals(userId)).AsAsyncEnumerable();
+        return Ok(jobs);
+    }
 }
