@@ -1,12 +1,12 @@
 import ListItem from './ListItem';
 
-function ListView({items}) {
+function ListView({items, onItemSelected}) {
     return (
         <ul className="list-view">
             {
                 items.map((i) => (
                     <li className="list-item">
-                        <ListItem {...i} />
+                        <ListItem {...i} onClick={() => onItemSelected(i.id)} />
                     </li>
                 ))
             }
