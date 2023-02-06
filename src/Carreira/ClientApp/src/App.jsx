@@ -6,11 +6,13 @@ import Layout from './components/Layout';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import JobForm from './components/JobForm';
+import JobsEditor from "./components/JobsEditor";
 
 import PermissionProvider from "./utils/PermissionProvider";
 import { isAuthenticated, getCurrentUser } from "./services/auth";
 
 import './custom.css';
+import Restricted from './utils/Restricted';
 
 function PrivateRoute({ children }) {
     if (!isAuthenticated()) {
@@ -29,6 +31,18 @@ function App() {
                     <Route path="publish" element={
                         <PrivateRoute>
                             <JobForm />
+                        </PrivateRoute>
+                    } />
+                    <Route path="publish/:jobId" element={
+                        <PrivateRoute>
+                            <Restricted to="Employer">
+                                <JobForm />
+                            </Restricted>
+                        </PrivateRoute>
+                    } />
+                    <Route path="published-jobs" element={
+                        <PrivateRoute>
+                            <JobsEditor />
                         </PrivateRoute>
                     } />
                 </Route>

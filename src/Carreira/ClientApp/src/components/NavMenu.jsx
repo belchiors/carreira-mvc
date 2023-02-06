@@ -26,7 +26,7 @@ function NavMenu() {
                                 <a href="/publish">Anunciar Vaga</a>
                             </li>
                             <li className="menu-item">
-                                <a href="/jobs?userId=1">Meus Anúncios</a>
+                                <a href="/published-jobs">Meus Anúncios</a>
                             </li>
                         </Restricted>
                         <span className="menu-item">{user?.name}</span>
