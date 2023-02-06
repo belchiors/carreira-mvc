@@ -8,6 +8,7 @@ public class Job
     public string CompanyName { get; set; }
     public string CompanyEmail { get; set; }
     public string CompanyLocation { get; set; }
+    public DateTime CreatedAt { get; set; }
     public virtual User User { get; set; }
     public virtual int UserId { get; set; }
 }

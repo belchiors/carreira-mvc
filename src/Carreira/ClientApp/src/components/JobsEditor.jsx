@@ -48,6 +48,7 @@ function JobsEditor() {
                         <th>Id</th>
                         <th>Título</th>
                         <th>Descrição</th>
+                        <th>Data</th>
                         <th>#</th>
                     </tr>
                 </thead>
@@ -57,6 +58,7 @@ function JobsEditor() {
                             <td>{item.id}</td>
                             <td>{item.title}</td>
                             <td>{item.description.substring(0, 144)}</td>
+                            <td>{new Date(item.createdAt).toLocaleDateString()}</td>
                             <td>
                                 <div className="align-center justify-between">
                                     <button className="padding-x-sm" onClick={() => onEdit(item.id)}>Editar</button>

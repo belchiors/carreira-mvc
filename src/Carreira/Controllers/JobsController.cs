@@ -29,7 +29,8 @@ public class JobsController : ControllerBase
             Description = model.Description,
             CompanyName = model.CompanyName,
             CompanyEmail = model.CompanyEmail,
-            CompanyLocation = model.CompanyLocation
+            CompanyLocation = model.CompanyLocation,
+            CreatedAt = DateTime.UtcNow
         };
 
         var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;

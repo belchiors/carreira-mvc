@@ -1,4 +1,4 @@
-function ListItem({id, title, description, companyName, companyLocation, onClick}) {
+function ListItem({id, title, description, companyName, companyLocation, createdAt, onClick}) {
     return (
         <div className="list-item-content">
             <div className="list-item-header">
@@ -6,6 +6,9 @@ function ListItem({id, title, description, companyName, companyLocation, onClick
                 <div className="metadata">
                     <span className="d-block">{companyName}</span>
                     <span className="d-block">{companyLocation}</span>
+                    <span className="d-block">
+                        Anunciada em: {new Date(createdAt).toLocaleDateString()}
+                    </span>
                 </div>
             </div>
             <div className="list-item-body">

@@ -17,6 +17,9 @@ function DetailsModal({id, onModalClose}) {
                 <div className="metadata">
                     <span className="d-block">{item?.companyLocation}</span>
                     <span className="d-block">{item?.companyName}</span>
+                    <span className="d-block">
+                        Anunciada em: {new Date(item?.createdAt).toLocaleDateString()}
+                    </span>
                 </div>
             </div>
             <div className="modal-body">

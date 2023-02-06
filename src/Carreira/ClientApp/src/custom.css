@@ -46,6 +46,7 @@ td {
     text-overflow: ellipsis;
 }
 
+td:nth-last-child(2),
 td:first-child,
 td:last-child {
     max-width: 96px;
