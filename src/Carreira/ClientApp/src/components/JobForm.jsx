@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { getToken } from "../services/auth";
 
 function JobForm() {
+    const { jobId } = useParams();
     const [ token, setToken ] = useState("");
-    const [ formData, setFormData ] = useState({
+    const [formData, setFormData] = useState({
+        jobId: "",
         title: "",
         description: "",
         companyName: "",
@@ -19,7 +21,7 @@ function JobForm() {
         event.preventDefault();
 
         const response = await fetch("api/jobs", {
-            method: "POST",
+            method: jobId === "" ? "POST" : "PUT",
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${token}`          
@@ -41,6 +43,14 @@ function JobForm() {
     useEffect(() => {
         const token = getToken();
         setToken(token);
+
+        if (jobId) {
+            fetch(`api/jobs/${jobId}`)
+                .then((response) => response.json())
+                .then((data) => {
+                    setFormData((prev) => ({ ...prev, ...data, jobId: jobId }))
+                });
+        }
     }, []);
 
     return (
@@ -60,7 +70,7 @@ function JobForm() {
                 </div>
                 <div className="form-field">
                     <label id="title">Título da vaga</label>
-                    <input id="title" type="text" name="title" value={formData.titulo} onChange={onChange} required />
+                    <input id="title" type="text" name="title" value={formData.title} onChange={onChange} required />
                 </div>
                 <div className="form-field">
                     <label id="description">Descrição da vaga</label>
