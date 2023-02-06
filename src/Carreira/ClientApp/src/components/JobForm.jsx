@@ -21,7 +21,7 @@ function JobForm() {
         event.preventDefault();
 
         const response = await fetch("api/jobs", {
-            method: jobId === "" ? "POST" : "PUT",
+            method: formData.jobId === "" ? "POST" : "PUT",
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${token}`          
@@ -51,7 +51,7 @@ function JobForm() {
                     setFormData((prev) => ({ ...prev, ...data, jobId: jobId }))
                 });
         }
-    }, []);
+    }, [jobId]);
 
     return (
         <div className="content-sm">
