@@ -39,6 +39,7 @@ public class AccountController : ControllerBase
         var token = _tokenService.GenerateToken(user);
         var userResponse = new
         {
+            id = user.Id,
             name = user.Name,
             email = user.Email,
             role = Enum.GetName(typeof(UserRole), user.Role)
