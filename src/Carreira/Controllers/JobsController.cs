@@ -70,7 +70,7 @@ public class JobsController : ControllerBase
 
     }
 
-    [HttpDelete]
+    [HttpDelete("{jobId}")]
     [Authorize(Roles = "Employer")]
     public async Task<IActionResult> Delete(int jobId)
     {
