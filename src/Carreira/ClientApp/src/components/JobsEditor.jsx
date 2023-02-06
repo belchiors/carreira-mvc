@@ -23,7 +23,7 @@ function JobsEditor() {
             });
 
             if (response.ok) {
-                alert("Anúncio deletado!");
+                alert("Anúncio excluído com sucesso!");
                 window.location.reload(true);
             }
         }
@@ -56,7 +56,7 @@ function JobsEditor() {
                         <tr>
                             <td>{item.id}</td>
                             <td>{item.title}</td>
-                            <td>{item.description.substring(0, 255)}</td>
+                            <td>{item.description.substring(0, 144)}</td>
                             <td>
                                 <div className="align-center justify-between">
                                     <button className="padding-x-sm" onClick={() => onEdit(item.id)}>Editar</button>

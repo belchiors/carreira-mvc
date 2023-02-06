@@ -54,7 +54,7 @@ function JobForm() {
     }, []);
 
     return (
-        <div className="content">
+        <div className="content-sm">
             <form onSubmit={onSubmit} method="POST">
                 <div className="form-field">
                     <label id="company-name">Nome da empresa</label>
@@ -77,7 +77,7 @@ function JobForm() {
                     <textarea id="description" rows="10" name="description" value={formData.description} onChange={onChange} required />
                 </div>
                 <div className="form-field">
-                    <button className="button" type="submit">Publicar Vaga</button>
+                    <button className="button button-primary" type="submit">Publicar Vaga</button>
                 </div>
             </form>
         </div>

@@ -68,7 +68,7 @@ function SignUp() {
                         })} />
                     </div>
                     <div className="form-field">
-                        <button className="button" type="submit">Cadastrar</button>
+                        <button className="button button-primary is-full" type="submit">Cadastrar</button>
                     </div>
                 </form>
                 <div className="">

@@ -50,7 +50,7 @@ function SignIn() {
                         <input id="password" type="password" name="password" value={formData.password} onChange={onChange} required />
                     </div>
                     <div className="form-field">
-                        <button className="button" type="submit">Entrar</button>
+                        <button className="button button-primary is-full" type="submit">Entrar</button>
                     </div>
                 </form>
                 <div className="">
