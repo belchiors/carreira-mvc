@@ -92,7 +92,7 @@ public class JobsController : ControllerBase
     }
 
     [HttpGet("{jobId}")]
-    public async Task<IActionResult> GetById([FromQuery] int jobId)
+    public async Task<IActionResult> GetById(int jobId)
     {
         var job = await _databaseContext.Jobs.Where((job) => job.Id.Equals(jobId)).FirstOrDefaultAsync();
         return Ok(job);
